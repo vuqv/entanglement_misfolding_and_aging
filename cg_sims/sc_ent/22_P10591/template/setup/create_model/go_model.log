@@ -1,0 +1,48 @@
+
+##########################################
+# Build CG Protein Model: Python version #
+#   Yang Jiang & Edward P. O'Brien Jr.   #
+#            Dept. of Chemistry          #
+#          Penn State University         #
+##########################################
+
+Configuration:
+pdbfile = ../../../P10591_clean.pdb
+casm = 0
+nscal = 1.0000
+fnn = 1.0000
+potential_name = bt
+domain_file = domain_def.dat
+sc_prefix = B
+ca_prefix = A
+
+domain_file is defined, nscal will be ignored.
+
+5 domain(s) defined in the Domain file domain_def.dat
+Domain information:
+Domain 1: 1 to 225
+Domain 2: 303 to 390
+Domain 3: 226 to 302
+Domain 4: 391 to 509
+Domain 5: 510 to 642
+
+The average BT interaction energy is 0.6676
+
+Reading in PDB file ../../../P10591_clean.pdb
+Assign domain id to each atom
+
+Create psf
+Create cor
+Create top
+
+Determining native contacts
+Finished calculating distance matrix
+Determining side-chains - side-chains contacts
+Determining backbone - side-chains contacts
+# nat sc-sc contacts 875, # nat bb-sc contacts 1361, and  # non-nat sc-sc 203605
+Determining the presence of hydrogen bonds using STRIDE
+# of unique Hbonds 397
+
+Create prm
+
+All done.

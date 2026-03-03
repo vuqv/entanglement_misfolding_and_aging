@@ -1,0 +1,51 @@
+name: bioenv
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  - python=3.13
+
+  # Bioinformatics
+  - bcftools
+  - bedtools
+  - biopython
+  - blast
+  - bowtie2
+  - bwa
+  - clustalw
+  - emboss
+  - fastqc
+  - fasttree
+  - hmmer
+  - iqtree
+  - mafft
+  - multiqc
+  - muscle
+  - samtools
+
+  # Data + stats
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - statsmodels
+  - seaborn
+  - matplotlib
+
+  # MD + biophysics
+  - mdanalysis
+  - mdtraj
+  - openmm=8.0
+  - deeptime
+
+  # Jupyter
+  - ipywidgets
+  - jupyterlab
+  - notebook
+  - nb_conda
+
+  # Utilities
+  - openpyxl
+  - bioservices
