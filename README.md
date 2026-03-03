@@ -115,7 +115,7 @@ Statistical association analyses run on modest hardware (for example, a laptop w
 
 ## Authors
 
-Quyen V. Vu^1^, Ian Sitarik^{2,3}, Daniel A. Nissley2,3, and Edward P. O'Brien1,2,3,4*
+Quyen V. Vu<sup>1</sup>, Ian Sitarik<sup>2,3</sup>, Daniel A. Nissley<sup>2,3</sup>, and Edward P. O'Brien<sup>1,2,3,4</sup>*
 
 1. Department of Chemistry, Pennsylvania State University, University Park, PA, USA
 2. National Science Foundation - National Synthesis Center for the Emergence in the Molecular and Cellular Sciences, Pennsylvania State University, University Park, PA, USA
