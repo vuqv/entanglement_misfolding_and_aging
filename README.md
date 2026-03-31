@@ -62,29 +62,68 @@ Only proteins with average pLDDT >= 70 are included in the entanglement-based in
 
 ### Prerequisites
 
-- [Mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html) (recommended; faster solver)
-- [Conda/Miniconda](https://docs.conda.io/en/latest/miniconda.html) (fallback)
+- [Conda or Miniconda](https://docs.conda.io/en/latest/miniconda.html)
+- Optional (recommended): [Mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html) for faster solving
 
 All required packages are listed in `bioenv.yml`.
 
 ### Setup
 
 1. Clone this repository and enter the project directory.
-2. Create and activate the environment with `mamba`:
+2. Choose one environment manager path below.
+
+#### Option A (recommended): Conda + Mamba
+
+Install `mamba` once into your Conda **base** environment:
+
+```bash
+conda install -n base -c conda-forge mamba
+```
+
+Then create and activate the project environment:
 
 ```bash
 mamba env create -f bioenv.yml
 conda activate bioenv
 ```
 
-If `mamba` is not available, use:
+Note: Installing `mamba` in `base` only adds the `mamba` command.  
+Project dependencies are still installed in a separate environment (`bioenv`), not in `base`.
+
+#### Option B: Conda only (no mamba)
+
+Caution: Conda's dependency solver can be very slow for large environments.  
+If solving takes too long, use Option A (`mamba`) for significantly faster environment creation.
 
 ```bash
 conda env create -f bioenv.yml
 conda activate bioenv
 ```
 
+3. Verify the environment:
+
+```bash
+python --version
+```
+
 ## Reproducing results
+
+All statistical analyses and figure-generation workflows are executed primarily in **Jupyter Notebook** (`.ipynb`) files.  
+To reproduce results as documented, Jupyter is required.
+
+### Jupyter quick start (for non-expert users)
+
+After activating `bioenv`, launch Jupyter from the notebook directory (`statistical_association/notebook/`), and run notebook cells top-to-bottom (`Run All`):
+
+```bash
+jupyter notebook
+```
+
+Quick runtime example (typical laptop, 1 CPU core):
+
+- `1_0_SC_Ent_Protein_level.ipynb`: usually a few seconds
+- `1_1_SC_Ent_Residue_level.ipynb`: usually a few seconds
+- `2_Association_structural_change_abundance_increase.ipynb`: usually a few seconds
 
 ### Statistical association
 
@@ -112,7 +151,7 @@ Main figures and Tables (results) are generated using following notebooks:
 
 | Source                   | Notebook                                                                   | Output location                        |
 | ------------------------ | -------------------------------------------------------------------------- | -------------------------------------- |
-| Statistical association  | `1_0_SC_Ent_Protein_level.ipynb`, `1_1_SC_Ent_Residue_level.ipynb`, and `2_Association_structural_change_abundance_increase.ipynb` | `statistical_association/notebook/`    |
+| Statistical association  | `1_0_SC_Ent_Protein_level.ipynb`, `1_1_SC_Ent_Residue_level.ipynb`, and `2_Association_structural_change_abundance_increase.ipynb` | `statistical_association/notebook/figs`    |
 | CG misfolding propensity | `Plot_misfolding_propensity_Nature_style.ipynb`                            | `cg_sims/plot_misfolding_probability/` |
 
 
@@ -121,7 +160,7 @@ Main figures and Tables (results) are generated using following notebooks:
 
 | Component                                   | Storage                     | CPUs                                        | RAM   | GPUs     | Runtime                                                                                         |
 | ------------------------------------------- | --------------------------- | ------------------------------------------- | ----- | -------- | ----------------------------------------------------------------------------------------------- |
-| Statistical association (Jupyter notebooks) | Minimal                     | 1 core                                      | 8 GB  | None     | Negligible                                                                                      |
+| Statistical association (Jupyter notebooks) | Minimal                     | 1 core                                      | 8 GB  | None     | Negligible (few seconds)                                                                                     |
 | CG simulations                              | Depends on trajectory count | 1 core (CPU-only) or 1 CPU + 1 GPU (faster) | 8 GB+ | Optional | ~3 h for short proteins (~100 residues, 1.5 us) to ~1 day for long proteins (~800 residues) |
 
 
@@ -146,4 +185,13 @@ If you use these datasets in your work, please cite:
 
 > [Citation placeholder - add full bibliographic reference when published (journal, volume, pages, year, DOI).]
 
+## License
+
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0).  
+See the `LICENSE` file for the full license text.
+
+## Attribution and funding
+
 This work was supported by the National Science Foundation National Synthesis Center for the Emergence of Molecular and Cellular Sciences (NCEMS, DBI-2335029).
+
+Please retain this acknowledgment in derivative distributions and related publications when applicable.
