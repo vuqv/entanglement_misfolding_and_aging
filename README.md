@@ -37,13 +37,13 @@ Given this scope, notebook-based orchestration was chosen for readability and ac
 
 This project uses two primary input datasets for the association analyses.
 
-### Input data
+### Input data (raw data)
 
 
 | Data              | Original source                                                                                   |
-| ------------------|------------------------------------------------------------------------------------------------- |
+| ----------------- | ------------------------------------------------------------------------------------------------- |
 | LiP-MS data       | [Molecular Cell dataset](https://linkinghub.elsevier.com/retrieve/pii/S1097276523006512)          |
-| Entanglement data |  [JMB dataset](https://www.sciencedirect.com/science/article/abs/pii/S0022283624000251?via%3Dihub) |
+| Entanglement data | [JMB dataset](https://www.sciencedirect.com/science/article/abs/pii/S0022283624000251?via%3Dihub) |
 
 
 ### Processed data (used in notebooks)
@@ -100,7 +100,7 @@ conda env create -f bioenv.yml
 conda activate bioenv
 ```
 
-3. Verify the environment:
+1. Verify the environment:
 
 ```bash
 python --version
@@ -149,10 +149,11 @@ Workflow location: `cg_sims/`
 
 Main figures and Tables (results) are generated using following notebooks:
 
-| Source                   | Notebook                                                                   | Output location                        |
-| ------------------------ | -------------------------------------------------------------------------- | -------------------------------------- |
-| Statistical association  | `1_0_SC_Ent_Protein_level.ipynb`, `1_1_SC_Ent_Residue_level.ipynb`, and `2_Association_structural_change_abundance_increase.ipynb` | `statistical_association/notebook/figs`    |
-| CG misfolding propensity | `Plot_misfolding_propensity_Nature_style.ipynb`                            | `cg_sims/plot_misfolding_probability/` |
+
+| Source                   | Notebook                                                                                                                           | Output location                         |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| Statistical association  | `1_0_SC_Ent_Protein_level.ipynb`, `1_1_SC_Ent_Residue_level.ipynb`, and `2_Association_structural_change_abundance_increase.ipynb` | `statistical_association/notebook/figs` |
+| CG misfolding propensity | `Plot_misfolding_propensity_Nature_style.ipynb`                                                                                    | `cg_sims/plot_misfolding_probability/`  |
 
 
 ## Computational requirements
@@ -160,15 +161,15 @@ Main figures and Tables (results) are generated using following notebooks:
 
 | Component                                   | Storage                     | CPUs                                        | RAM   | GPUs     | Runtime                                                                                         |
 | ------------------------------------------- | --------------------------- | ------------------------------------------- | ----- | -------- | ----------------------------------------------------------------------------------------------- |
-| Statistical association (Jupyter notebooks) | Minimal                     | 1 core                                      | 8 GB  | None     | Negligible (few seconds)                                                                                     |
-| CG simulations                              | Depends on trajectory count | 1 core (CPU-only) or 1 CPU + 1 GPU (faster) | 8 GB+ | Optional | ~3 h for short proteins (~100 residues, 1.5 us) to ~1 day for long proteins (~800 residues) |
+| Statistical association (Jupyter notebooks) | Minimal                     | 1 core                                      | 8 GB  | None     | Negligible (few seconds)                                                                        |
+| CG simulations                              | Depends on trajectory count | 1 core (CPU-only) or 1 CPU + 1 GPU (faster) | 8 GB+ | Optional | ~~3 h for short proteins (~~100 residues, 1.5 us) to ~~1 day for long proteins (~~800 residues) |
 
 
 Statistical association analyses run on modest hardware (for example, a laptop with 8 GB RAM and 1 CPU core). CG simulations can run on CPU only and benefit from optional GPU acceleration.
 
 ## Authors
 
-Quyen V. Vu<sup>1</sup>, Ian Sitarik<sup>2,3</sup>, Daniel A. Nissley<sup>2,3</sup>, and Edward P. O'Brien<sup>1,2,3,4</sup>*
+Quyen V. Vu1, Ian Sitarik2,3, Daniel A. Nissley2,3, and Edward P. O'Brien1,2,3,4*
 
 1. Department of Chemistry, Pennsylvania State University, University Park, PA, USA
 2. National Science Foundation - National Synthesis Center for the Emergence in the Molecular and Cellular Sciences, Pennsylvania State University, University Park, PA, USA
@@ -195,3 +196,7 @@ See the `LICENSE` file for the full license text.
 This work was supported by the National Science Foundation National Synthesis Center for the Emergence of Molecular and Cellular Sciences (NCEMS, DBI-2335029).
 
 Please retain this acknowledgment in derivative distributions and related publications when applicable.
+
+## Troubleshooting / known issues
+
+No known issues at this time.
