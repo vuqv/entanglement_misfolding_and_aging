@@ -48,22 +48,36 @@ This project uses two primary input datasets for the association analyses.
 
 ### Processed data (used in notebooks)
 
-The above inputs are integrated into single pickle file datasets: `statistical_association/data/SC_Ent.pkl`
+The above inputs are integrated into a single processed dataset:
+`statistical_association/data/SC_Ent.pkl`.
 
+This merged file combines:
 
+- **LiP-MS data**: quantified proteins from the LiP-MS experiment, including whether each protein shows age-related structural changes and the positions of significant proteolytic alterations.
+- **Entanglement data**: NCLE status per protein, entangled-region annotations, and protein length.
+
+Only proteins with average pLDDT >= 70 are included in the entanglement-based integration.
 
 ## Installation
 
 ### Prerequisites
 
-- [Conda/Miniconda](https://docs.conda.io/en/latest/miniconda.html)
+- [Mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html) (recommended; faster solver)
+- [Conda/Miniconda](https://docs.conda.io/en/latest/miniconda.html) (fallback)
 
 All required packages are listed in `bioenv.yml`.
 
 ### Setup
 
 1. Clone this repository and enter the project directory.
-2. Create and activate the environment:
+2. Create and activate the environment with `mamba`:
+
+```bash
+mamba env create -f bioenv.yml
+conda activate bioenv
+```
+
+If `mamba` is not available, use:
 
 ```bash
 conda env create -f bioenv.yml
@@ -98,7 +112,7 @@ Main figures and Tables (results) are generated using following notebooks:
 
 | Source                   | Notebook                                                                   | Output location                        |
 | ------------------------ | -------------------------------------------------------------------------- | -------------------------------------- |
-| Statistical association  | `1_0_Plot_Odd_at_protein_level.ipynb`, `1_1_Plot_Odd_at_residue_level.ipynb` | `statistical_association/notebook/`    |
+| Statistical association  | `1_0_SC_Ent_Protein_level.ipynb`, `1_1_SC_Ent_Residue_level.ipynb`, and `2_Association_structural_change_abundance_increase.ipynb` | `statistical_association/notebook/`    |
 | CG misfolding propensity | `Plot_misfolding_propensity_Nature_style.ipynb`                            | `cg_sims/plot_misfolding_probability/` |
 
 
