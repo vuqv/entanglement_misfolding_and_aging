@@ -4,6 +4,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+dependencies:
   - _openmp_mutex=4.5=20_gnu
   - _python_abi3_support=1.0=hd8ed1ab_2
   - alsa-lib=1.2.15.3=hb03c661_0
@@ -53,8 +54,8 @@ dependencies:
   - contourpy=1.3.3=py313hc8edb43_4
   - cpp-expected=1.3.1=h171cf75_0
   - cpython=3.13.12=py313hd8ed1ab_100
-  - cuda-nvrtc=13.2.51=hecca717_0
-  - cuda-version=13.2=he2cc418_3
+  - cuda-nvrtc=12.9.86=hecca717_1
+  - cuda-version=12.9=h4f385c5_3
   - curl=8.19.0=hcf29cc6_0
   - cycler=0.12.1=pyhcf101f3_2
   - cyrus-sasl=2.1.28=hac629b4_1
@@ -156,7 +157,7 @@ dependencies:
   - libcblas=3.11.0=5_h0358290_openblas
   - libclang-cpp22.1=22.1.0=default_h99862b1_0
   - libclang13=22.1.0=default_h746c552_0
-  - libcufft=12.2.0.37=hecca717_0
+  - libcufft=11.4.1.4=hecca717_1
   - libcups=2.3.3=h7a8fb5f_6
   - libcurl=8.19.0=hcf29cc6_0
   - libdeflate=1.25=h17f619e_0
@@ -270,7 +271,7 @@ dependencies:
   - openjdk=25.0.2=ha668962_0
   - openjpeg=2.5.4=h55fea9a_0
   - openldap=2.6.10=hbde042b_1
-  - openmm=8.5.0=py313h6d8981a_1
+  - openmm=8.2.0=py313hc96c04f_3
   - openmpi=4.1.6=hc5af2df_101
   - openpyxl=3.1.5=py313ha4be090_3
   - openssl=3.6.1=h35e630c_1
@@ -278,6 +279,7 @@ dependencies:
   - packaging=26.0=pyhcf101f3_0
   - pandas=2.3.3=py313h08cd8bf_2
   - pandocfilters=1.5.0=pyhd8ed1ab_0
+  - parmed=4.3.1=py313hd7c0e57_0
   - parso=0.8.6=pyhcf101f3_0
   - patsy=1.0.2=pyhcf101f3_0
   - pcre2=10.47=haa7fec5_0
