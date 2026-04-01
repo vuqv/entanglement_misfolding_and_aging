@@ -4,7 +4,7 @@ Statistical association workflows for testing the relationship between native no
 
 ## Primary entry points
 
-Main notebooks are located in `analysis/`.
+Main notebooks are located in `notebook/`.
 
 | Notebook | Required input | Aim |
 | --- | --- | --- |
