@@ -16,9 +16,6 @@
 
 ## YOUR MAIN COMMANDS HERE
 
-conda init bash
-source /storage/home/qzv5006/work/anaconda3/etc/profile.d/conda.sh
-conda activate bioenv
 cd $SLURM_SUBMIT_DIR
 echo `pwd`
 

@@ -14,7 +14,14 @@ Coarse-grained (CG) simulation scripts, preparation notebooks, and analysis work
 | Template scripts                                                              | `scripts/`          | Reusable simulation and analysis job templates                            |
 | Template analysis notebooks                                                   | `scripts/analysis/` | MSM analysis, free-energy plots, visualization, representative structures |
 
-
+> **Note:** In each protein `template/` SLURM job script (for example, `job.sh`, `job_GQ.sh`, `job_GQ_open.sh`, `job_GQ_mgc.sh`, `job_cg_ext.sh`), add environment activation for this project before running commands (for example, `conda activate bioenv`).
+>
+> **Note 2:** To run GQ analysis (Step 4), add `cg_sims/scripts/` to your Linux `PATH`, and ensure `GQ.py` is executable:
+>
+> ```bash
+> export PATH=$PATH:/path-to-cg_sims/cg_sims/scripts/
+> chmod +x /path-to-cg_sims/cg_sims/scripts/GQ.py
+> ```
 ## Step-by-step: run CG simulations
 
 ### Step 1: `1_copy_sim_set.sh` (prepare trajectory folders)
