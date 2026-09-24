@@ -33,6 +33,7 @@ def set_nature_style(base_fontsize=8):
         "font.size": base_fontsize,
         "pdf.fonttype": 42,
         "ps.fonttype": 42,
+        "svg.fonttype": "none",  # keep SVG text as editable text, not paths
 
         "axes.labelsize": base_fontsize,
         "axes.titlesize": base_fontsize,

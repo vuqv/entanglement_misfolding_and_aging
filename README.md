@@ -2,7 +2,7 @@
 
 This repository evaluates the association between native non-covalent lasso entanglements (NCLEs) and age-associated structural changes in the yeast proteome. It includes:
 
-- Statistical association workflows (protein-level, residue-level, and association with abundance increase)
+- Statistical association workflows (protein-level, residue-level, and logistic regression models linking NCLEs and age-associated structural changes to abundance increase)
 - Coarse-grained (CG) folding and misfolding simulation workflows
 - Figure-generation notebooks
 - A reproducible software environment (`bioenv.yml`)
@@ -23,7 +23,7 @@ Given this scope, notebook-based orchestration was chosen for readability and ac
 
 | Workflow                | Location                   | Purpose                                                                                                                                      |
 | ----------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Statistical association | `statistical_association/` | Main notebooks for NCLE vs. structural-change association (odds ratios and residue-level analyses). See `statistical_association/README.md`. |
+| Statistical association | `statistical_association/` | Main notebooks for NCLE vs. structural-change association (protein- and residue-level) and NCLE/structural-change vs. abundance increase. See `statistical_association/README.md`. |
 | CG simulations          | `cg_sims/`                 | Temperature-quenching workflows at 300 K, MSM analyses, and visualization. See `cg_sims/README.md`.                                          |
 
 
@@ -48,15 +48,24 @@ This project uses two primary input datasets for the association analyses.
 
 ### Processed data (used in notebooks)
 
-The above inputs are integrated into a single processed dataset:
-`statistical_association/data/SC_Ent.pkl`.
+The above inputs are integrated into two processed datasets in `statistical_association/data/`:
 
-This merged file combines:
+| File | Proteins | Used by | Contents |
+| --- | --- | --- | --- |
+| `SC_Ent_no_transmembrane_secretory.pkl` | 1,887 | `1_0_*`, `1_1_*` | Merged LiP-MS and entanglement data, with transmembrane and secretory proteins excluded. |
+| `SC_ENT_ABD.xlsx` | 1,776 | `2_NCLE_ASC_abundance_3_models.ipynb` | Per-protein NCLE status, structural-change status, standardized length, and abundance-increase status. Subset of the 1,887 proteins above with abundance measurements. |
 
-- **LiP-MS data**: quantified proteins from the LiP-MS experiment, including whether each protein shows age-related structural changes and the positions of significant proteolytic alterations.
-- **Entanglement data**: NCLE status per protein, entangled-region annotations, and protein length.
+`SC_Ent_no_transmembrane_secretory.pkl` combines:
 
-Only proteins with average pLDDT >= 70 are included in the entanglement-based integration.
+- **LiP-MS data**: quantified proteins from the LiP-MS experiment, including whether each protein shows age-related structural changes (`SC`) and the positions of significant proteolytic alterations (`Cutsite_residues`).
+- **Entanglement data**: NCLE status per protein (`entangled`), entangled-region annotations (`entangled_residues`, `clustered_entangled_residues`), and AlphaFold protein length (`length_AF`).
+
+`SC_ENT_ABD.xlsx` adds a binary abundance label (`Abd_up`: 1 = abundance increases with age) to the NCLE and structural-change labels.
+
+Filtering applied to both processed datasets:
+
+- Only proteins with average pLDDT >= 70 are included in the entanglement-based integration.
+- Transmembrane and secretory proteins are excluded.
 
 ## Installation
 
@@ -123,7 +132,7 @@ Quick runtime example (typical laptop, 1 CPU core):
 
 - `1_0_SC_Ent_Protein_level.ipynb`: usually a few seconds
 - `1_1_SC_Ent_Residue_level.ipynb`: usually a few seconds
-- `2_Association_structural_change_abundance_increase.ipynb`: usually a few seconds
+- `2_NCLE_ASC_abundance_3_models.ipynb`: usually a few seconds
 
 ### Statistical association
 
@@ -132,11 +141,11 @@ Notebook location: `statistical_association/notebook/`
 Run the following notebooks:
 
 
-| Notebook                                                   | Required input                                    |
-| ---------------------------------------------------------- | ------------------------------------------------- |
-| `1_0_SC_Ent_Protein_level.ipynb`                           | `statistical_association/data/SC_Ent.pkl`         |
-| `1_1_SC_Ent_Residue_level.ipynb`                           | `statistical_association/data/SC_Ent.pkl`         |
-| `2_Association_structural_change_abundance_increase.ipynb` | `statistical_association/data/protein_abundances` |
+| Notebook                              | Required input                                                   |
+| ------------------------------------- | ---------------------------------------------------------------- |
+| `1_0_SC_Ent_Protein_level.ipynb`      | `statistical_association/data/SC_Ent_no_transmembrane_secretory.pkl` |
+| `1_1_SC_Ent_Residue_level.ipynb`      | `statistical_association/data/SC_Ent_no_transmembrane_secretory.pkl` |
+| `2_NCLE_ASC_abundance_3_models.ipynb` | `statistical_association/data/SC_ENT_ABD.xlsx`                   |
 
 
 ### CG simulations
@@ -149,10 +158,13 @@ Workflow location: `cg_sims/`
 
 Main figures and Tables (results) are generated using following notebooks:
 
+Figures are saved in PDF, PNG (300 dpi), and SVG formats.
+
 
 | Source                   | Notebook                                                                                                                           | Output location                         |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| Statistical association  | `1_0_SC_Ent_Protein_level.ipynb`, `1_1_SC_Ent_Residue_level.ipynb`, and `2_Association_structural_change_abundance_increase.ipynb` | `statistical_association/notebook/figs` |
+| Statistical association  | `1_0_SC_Ent_Protein_level.ipynb` and `1_1_SC_Ent_Residue_level.ipynb` | `statistical_association/notebook/figs` |
+| Abundance models (supplementary table) | `2_NCLE_ASC_abundance_3_models.ipynb` | Printed in notebook output (no files written) |
 | CG misfolding propensity | `Plot_misfolding_propensity_Nature_style.ipynb`                                                                                    | `cg_sims/plot_misfolding_probability/`  |
 
 
